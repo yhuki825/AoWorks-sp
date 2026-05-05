@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aoワークスは、システム開発と広告・マーケティング支援を通じて、個人事業主や企業の成長を支える事業パートナーです。">
+    <title>Aoワークス | 仕組みと伝え方で事業を前へ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #07111f;
+            --navy-soft: #102033;
+            --blue: #2563eb;
+            --cyan: #38bdf8;
+            --sky: #e0f2fe;
+            --slate: #475569;
+            --slate-dark: #1e293b;
+            --line: #dbe5f0;
+            --paper: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 24px 80px rgba(15, 23, 42, 0.14);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --container: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--slate-dark);
+            background: var(--paper);
+            font-family: "Noto Sans JP", sans-serif;
+            line-height: 1.9;
+            letter-spacing: 0.02em;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            content: "";
+            background:
+                radial-gradient(circle at 10% 12%, rgba(56, 189, 248, 0.18), transparent 28%),
+                radial-gradient(circle at 90% 6%, rgba(37, 99, 235, 0.14), transparent 26%),
+                linear-gradient(180deg, #f8fbff 0%, #f3f7fb 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(100% - 40px, var(--container));
+            margin-inline: auto;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 18px;
+            color: var(--blue);
+            font-family: "Outfit", "Noto Sans JP", sans-serif;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 34px;
+            height: 2px;
+            content: "";
+            background: currentColor;
+            border-radius: 999px;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3.35rem);
+            font-weight: 900;
+            line-height: 1.25;
+            letter-spacing: 0.01em;
+        }
+
+        .section-lead {
+            max-width: 720px;
+            margin: 22px 0 0;
+            color: var(--slate);
+            font-size: 1.02rem;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            border-bottom: 1px solid rgba(219, 229, 240, 0.8);
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(18px);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 78px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Outfit", "Noto Sans JP", sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .logo-mark {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: 14px;
+            box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
+        }
+
+        .global-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            color: #334155;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .global-nav a {
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .global-nav a::after {
+            position: absolute;
+            right: 0;
+            bottom: -9px;
+            left: 0;
+            height: 2px;
+            content: "";
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            border-radius: 999px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.25s ease;
+        }
+
+        .global-nav a:hover {
+            color: var(--blue);
+        }
+
+        .global-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .menu-button {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--line);
+            color: var(--slate-dark);
+            background: var(--white);
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        .menu-button span,
+        .menu-button::before,
+        .menu-button::after {
+            display: block;
+            width: 18px;
+            height: 2px;
+            margin: 4px auto;
+            content: "";
+            background: currentColor;
+            border-radius: 999px;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            padding: 158px 0 100px;
+            color: var(--white);
+            overflow: hidden;
+            background: var(--navy);
+        }
+
+        .hero::before {
+            position: absolute;
+            inset: 0;
+            content: "";
+            background:
+                linear-gradient(120deg, rgba(7, 17, 31, 0.94) 0%, rgba(7, 17, 31, 0.76) 46%, rgba(37, 99, 235, 0.55) 100%),
+                url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=85&w=2200") center/cover;
+            transform: scale(1.02);
+        }
+
+        .hero::after {
+            position: absolute;
+            right: -180px;
+            bottom: -220px;
+            width: 520px;
+            height: 520px;
+            content: "";
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.34), transparent 66%);
+            filter: blur(4px);
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.68fr);
+            gap: 58px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            margin: 0 0 24px;
+            color: #dff7ff;
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            backdrop-filter: blur(14px);
+            font-family: "Outfit", "Noto Sans JP", sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .hero-badge::before {
+            width: 8px;
+            height: 8px;
+            content: "";
+            background: var(--cyan);
+            border-radius: 999px;
+            box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.15);
+        }
+
+        .hero-title {
+            margin: 0;
+            font-size: clamp(2.8rem, 7.2vw, 6.6rem);
+            font-weight: 900;
+            line-height: 1.06;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-title .accent {
+            color: transparent;
+            background: linear-gradient(90deg, #93c5fd, #67e8f9, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero-lead {
+            max-width: 720px;
+            margin: 28px 0 0;
+            color: #c7d7ea;
+            font-size: clamp(1rem, 1.8vw, 1.18rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 38px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 54px;
+            padding: 0 24px;
+            border-radius: 999px;
+            font-weight: 800;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: var(--white);
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            box-shadow: 0 18px 44px rgba(37, 99, 235, 0.32);
+        }
+
+        .button-secondary {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(14px);
+        }
+
+        .hero-panel {
+            position: relative;
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 34px;
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(22px);
+        }
+
+        .panel-image {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .panel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .panel-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 16px;
+            align-items: center;
+            margin-top: -38px;
+            margin-inline: 18px;
+            padding: 20px;
+            color: var(--slate-dark);
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .panel-number {
+            display: grid;
+            width: 58px;
+            height: 58px;
+            place-items: center;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: 18px;
+            font-family: "Outfit", sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .panel-card p {
+            margin: 0;
+            color: var(--slate);
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+
+        .panel-card strong {
+            display: block;
+            color: var(--slate-dark);
+            font-size: 0.95rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .stat-item {
+            padding: 18px 12px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 20px;
+        }
+
+        .stat-item strong {
+            display: block;
+            color: var(--white);
+            font-family: "Outfit", sans-serif;
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .stat-item span {
+            color: #c7d7ea;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .section {
+            padding: 108px 0;
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 0.92fr 1.08fr;
+            gap: 58px;
+            align-items: center;
+        }
+
+        .image-frame {
+            position: relative;
+        }
+
+        .image-frame::before {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            width: 72%;
+            height: 72%;
+            content: "";
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(56, 189, 248, 0.18));
+            border-radius: 30px;
+        }
+
+        .image-frame img {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3.25;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 34px;
+        }
+
+        .feature-item {
+            padding: 22px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 12px 34px rgba(15, 23, 42, 0.06);
+        }
+
+        .feature-item span {
+            display: block;
+            color: var(--blue);
+            font-family: "Outfit", sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .feature-item strong {
+            display: block;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .services {
+            position: relative;
+            background: #eef5fb;
+        }
+
+        .section-heading-center {
+            max-width: 760px;
+            margin: 0 auto 54px;
+            text-align: center;
+        }
+
+        .section-heading-center .eyebrow {
+            justify-content: center;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px;
+        }
+
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            padding: 34px;
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid rgba(219, 229, 240, 0.9);
+            border-radius: 32px;
+            box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 26px 80px rgba(15, 23, 42, 0.13);
+        }
+
+        .service-card::after {
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 180px;
+            height: 180px;
+            content: "";
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 68%);
+        }
+
+        .service-icon {
+            display: grid;
+            width: 64px;
+            height: 64px;
+            place-items: center;
+            margin-bottom: 24px;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: 20px;
+            box-shadow: 0 16px 34px rgba(37, 99, 235, 0.25);
+        }
+
+        .service-card h3 {
+            margin: 0 0 14px;
+            font-size: 1.55rem;
+            line-height: 1.4;
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--slate);
+        }
+
+        .service-list {
+            display: grid;
+            gap: 12px;
+            padding: 0;
+            margin: 26px 0 30px;
+            list-style: none;
+        }
+
+        .service-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: #334155;
+            font-weight: 700;
+            line-height: 1.65;
+        }
+
+        .service-list li::before {
+            flex: 0 0 auto;
+            width: 20px;
+            height: 20px;
+            margin-top: 4px;
+            content: "";
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.85);
+        }
+
+        .service-image {
+            height: 210px;
+            overflow: hidden;
+            border-radius: 22px;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .profile-card {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(34px, 6vw, 64px);
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 38px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-card::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 360px;
+            height: 360px;
+            content: "";
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.14), transparent 70%);
+        }
+
+        .profile-layout {
+            position: relative;
+            display: grid;
+            grid-template-columns: 0.38fr 0.62fr;
+            gap: 44px;
+            align-items: start;
+        }
+
+        .name-block {
+            padding-left: 22px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .name-block small {
+            display: block;
+            color: var(--slate);
+            font-family: "Outfit", "Noto Sans JP", sans-serif;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .name-block strong {
+            display: block;
+            margin-top: 10px;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            line-height: 1.25;
+        }
+
+        .name-block span {
+            display: block;
+            margin-top: 6px;
+            color: var(--blue);
+            font-family: "Outfit", sans-serif;
+            font-weight: 700;
+        }
+
+        .profile-text p {
+            margin: 0 0 18px;
+            color: var(--slate);
+        }
+
+        .skill-box {
+            padding: 20px;
+            margin-top: 26px;
+            background: #f8fbff;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+        }
+
+        .skill-box small {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--blue);
+            font-family: "Outfit", sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+        }
+
+        .skill-box p {
+            margin: 0;
+            color: var(--slate-dark);
+            font-weight: 700;
+            line-height: 1.7;
+        }
+
+        .info {
+            color: var(--white);
+            background:
+                linear-gradient(135deg, rgba(7, 17, 31, 0.96), rgba(16, 32, 51, 0.94)),
+                url("https://images.unsplash.com/photo-1541339907198-e08756ebafe1?auto=format&fit=crop&q=85&w=1800") center/cover;
+        }
+
+        .info .eyebrow {
+            color: #67e8f9;
+        }
+
+        .info .section-lead {
+            color: #c7d7ea;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 52px;
+            align-items: stretch;
+        }
+
+        .info-list {
+            display: grid;
+            gap: 18px;
+            margin-top: 36px;
+        }
+
+        .info-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
+            backdrop-filter: blur(16px);
+        }
+
+        .info-icon {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            color: var(--white);
+            background: rgba(56, 189, 248, 0.18);
+            border-radius: 15px;
+        }
+
+        .info-item dt {
+            margin: 0 0 4px;
+            color: #eff6ff;
+            font-weight: 800;
+        }
+
+        .info-item dd {
+            margin: 0;
+            color: #c7d7ea;
+        }
+
+        .location-card {
+            position: relative;
+            min-height: 420px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 34px;
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
+        }
+
+        .location-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            opacity: 0.72;
+        }
+
+        .location-label {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            left: 24px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 16px;
+            align-items: center;
+            padding: 20px;
+            color: var(--slate-dark);
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .location-pin {
+            display: grid;
+            width: 52px;
+            height: 52px;
+            place-items: center;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: 18px;
+        }
+
+        .location-label small {
+            display: block;
+            color: var(--slate);
+            font-family: "Outfit", sans-serif;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+        }
+
+        .location-label strong {
+            display: block;
+            font-size: 1.15rem;
+        }
+
+        .site-footer {
+            padding: 34px 0;
+            color: #94a3b8;
+            background: #030712;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .footer-inner .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+        }
+
+        .footer-inner .logo {
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        .footer-inner p {
+            margin: 0;
+            font-family: "Outfit", "Noto Sans JP", sans-serif;
+            font-size: 0.86rem;
+        }
+
+        @media (max-width: 920px) {
+            .global-nav {
+                position: fixed;
+                top: 78px;
+                right: 20px;
+                left: 20px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 14px;
+                background: rgba(255, 255, 255, 0.96);
+                border: 1px solid var(--line);
+                border-radius: 22px;
+                box-shadow: var(--shadow);
+            }
+
+            .global-nav.is-open {
+                display: flex;
+            }
+
+            .global-nav a {
+                padding: 14px 10px;
+            }
+
+            .global-nav a::after {
+                display: none;
+            }
+
+            .menu-button {
+                display: inline-block;
+            }
+
+            .hero-grid,
+            .about-layout,
+            .profile-layout,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-panel {
+                max-width: 560px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: min(100% - 28px, var(--container));
+            }
+
+            .hero {
+                padding: 126px 0 72px;
+            }
+
+            .hero-title {
+                letter-spacing: -0.04em;
+            }
+
+            .hero-actions,
+            .footer-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .stats,
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 78px 0;
+            }
+
+            .service-card,
+            .hero-panel {
+                padding: 24px;
+                border-radius: 26px;
+            }
+
+            .profile-card {
+                border-radius: 28px;
+            }
+
+            .location-card,
+            .location-card img {
+                min-height: 360px;
+            }
+
+            .footer-inner {
+                text-align: center;
+            }
+
+            .footer-inner .logo {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#top" aria-label="Aoワークスのトップへ戻る">
+                <span class="logo-mark">Ao</span>
+                <span>Ao Works</span>
+            </a>
+            <nav class="global-nav" id="globalNav" aria-label="グローバルナビゲーション">
+                <a href="#about">Aoワークスについて</a>
+                <a href="#services">事業内容</a>
+                <a href="#profile">代表者紹介</a>
+                <a href="#access">事業所情報</a>
+            </nav>
+            <button class="menu-button" type="button" aria-label="メニューを開閉する" aria-expanded="false" aria-controls="globalNav">
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div>
+                    <p class="hero-badge">System Development & Advertising</p>
+                    <h1 class="hero-title" id="hero-title">
+                        仕組みと<br>
+                        <span class="accent">伝え方</span>で、<br>
+                        事業を前へ。
+                    </h1>
+                    <p class="hero-lead">
+                        Aoワークスは、システム開発と広告・マーケティング支援を一体で考える、個人事業主のための実行型パートナーです。業務の効率化から価値の発信まで、成果につながる設計を丁寧に形にします。
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#services">事業内容を見る</a>
+                        <a class="button button-secondary" href="#about">考え方を知る</a>
+                    </div>
+                </div>
+                <aside class="hero-panel" aria-label="Aoワークスの特徴">
+                    <div class="panel-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=85&w=1200" alt="ノートパソコンに表示された分析画面">
+                    </div>
+                    <div class="panel-card">
+                        <div class="panel-number">01</div>
+                        <p><strong>開発と広告を横断して支援</strong>業務改善と集客施策を分断せず、事業全体の流れから最適な打ち手を設計します。</p>
+                    </div>
+                    <div class="stats" aria-label="提供領域">
+                        <div class="stat-item">
+                            <strong>Web</strong>
+                            <span>開発</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>DX</strong>
+                            <span>効率化</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>AD</strong>
+                            <span>広告運用</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="container about-layout">
+                <div class="image-frame">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1200" alt="事業戦略について打ち合わせをしている様子">
+                </div>
+                <div>
+                    <p class="eyebrow">About Ao Works</p>
+                    <h2 class="section-title" id="about-title">使いやすい仕組みを作り、選ばれる価値として届ける。</h2>
+                    <p class="section-lead">
+                        変化の速い時代において、優れたシステムだけでも、目立つ広告だけでも十分ではありません。Aoワークスは、業務の流れを整える技術力と、価値を正しく届ける企画力を掛け合わせ、事業が継続的に成長するための土台づくりを支援します。
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span>01</span>
+                            <strong>事業課題から逆算したシステム設計</strong>
+                        </div>
+                        <div class="feature-item">
+                            <span>02</span>
+                            <strong>ユーザー視点で整える広告・導線設計</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section services" id="services" aria-labelledby="services-title">
+            <div class="container">
+                <div class="section-heading-center">
+                    <p class="eyebrow">Services</p>
+                    <h2 class="section-title" id="services-title">事業の成長を支える、<br>2つの専門領域。</h2>
+                    <p class="section-lead">
+                        日々の業務を軽くする仕組みづくりと、魅力が伝わる広告施策を組み合わせ、<br>個人事業主や企業の前進を現実的な形でサポートします。
+                    </p>
+                </div>
+                <div class="service-grid">
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 18L2 12L8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 6L22 12L16 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 4L10 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>システム開発</h3>
+                        <p>
+                            業務効率化を支援する管理ツールから、新規事業に必要なWebサービスまで、使いやすさと運用しやすさを重視して開発します。
+                        </p>
+                        <ul class="service-list">
+                            <li>Webアプリケーション開発</li>
+                            <li>業務自動化ツール制作</li>
+                            <li>DX導入・業務改善コンサルティング</li>
+                        </ul>
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=85&w=1000" alt="コードが表示された開発画面">
+                        </div>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 13.5V10.5C4 9.67 4.67 9 5.5 9H8L17 4V20L8 15H5.5C4.67 15 4 14.33 4 13.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20 9.5C20.64 10.16 21 11.04 21 12C21 12.96 20.64 13.84 20 14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>広告・マーケティング支援</h3>
+                        <p>
+                            ターゲットに届くメッセージと導線を設計し、広告運用からクリエイティブ改善まで、成果に向けた施策を伴走します。
+                        </p>
+                        <ul class="service-list">
+                            <li>デジタル広告運用・改善</li>
+                            <li>SNSマーケティング支援</li>
+                            <li>クリエイティブ制作・PR戦略</li>
+                        </ul>
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=85&w=1000" alt="マーケティング施策について議論している会議風景">
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="profile" aria-labelledby="profile-title">
+            <div class="container">
+                <div class="profile-card">
+                    <div class="section-heading-center">
+                        <p class="eyebrow">Representative</p>
+                        <h2 class="section-title" id="profile-title">代表者紹介</h2>
+                    </div>
+                    <div class="profile-layout">
+                        <div class="name-block">
+                            <small>Ao Works Representative</small>
+                            <strong>青木 直人</strong>
+                            <span>Naoto Aoki</span>
+                        </div>
+                        <div class="profile-text">
+                            <p>
+                                都内IT企業にてフルスタックエンジニアとしてシステム開発プロジェクトに従事。その後、広告代理店でデジタルマーケティング領域の戦略立案を担当しました。技術と市場の両面を理解する視点を活かし、机上の空論ではなく、現場で使われ続ける仕組みと成果につながる伝え方を追求しています。
+                            </p>
+                            
+                            <div class="skill-box">
+                                <small>SKILLS</small>
+                                <p>System Architecture / React / Python / Digital Marketing Strategy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section info" id="access" aria-labelledby="access-title">
+            <div class="container info-grid">
+                <div>
+                    <p class="eyebrow">Information</p>
+                    <h2 class="section-title" id="access-title">事業所情報</h2>
+                    <p class="section-lead">
+                        システム開発と広告支援を中心に、事業の状態や目標に合わせた実践的なサポートを行っています。
+                    </p>
+                    <dl class="info-list">
+                        <div class="info-item">
+                            <div class="info-icon" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21C12 21 19 14.6 19 8.8C19 4.93 15.87 2 12 2C8.13 2 5 4.93 5 8.8C5 14.6 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                    <path d="M12 11.5C13.38 11.5 14.5 10.38 14.5 9C14.5 7.62 13.38 6.5 12 6.5C10.62 6.5 9.5 7.62 9.5 9C9.5 10.38 10.62 11.5 12 11.5Z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <dt>住所</dt>
+                                <dd>〒151-0071 東京都渋谷区</dd>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 6H14C15.1 6 16 6.9 16 8V9H8V8C8 6.9 8.9 6 10 6Z" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M4 9H20V18C20 19.1 19.1 20 18 20H6C4.9 20 4 19.1 4 18V9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                    <path d="M9 13H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <dt>事業内容</dt>
+                                <dd>システム開発、広告・マーケティング支援</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+                <div class="location-card">
+                    <img src="mos-design-qAwkxkU1Xso-unsplash.jpg" alt="都市の街並み">
+                    <div class="location-label">
+                        <div class="location-pin" aria-hidden="true">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21C12 21 19 14.6 19 8.8C19 4.93 15.87 2 12 2C8.13 2 5 4.93 5 8.8C5 14.6 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M12 11.5C13.38 11.5 14.5 10.38 14.5 9C14.5 7.62 13.38 6.5 12 6.5C10.62 6.5 9.5 7.62 9.5 9C9.5 10.38 10.62 11.5 12 11.5Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <small>Location</small>
+                            <strong>Shibuya, Tokyo</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <a class="logo" href="#top" aria-label="Aoワークスのトップへ戻る">
+                <span class="logo-mark">Ao</span>
+                <span>Ao Works</span>
+            </a>
+            <p>&copy; 2026 Ao Works. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector('.menu-button');
+        const globalNav = document.querySelector('#globalNav');
+
+        menuButton.addEventListener('click', () => {
+            const isOpen = globalNav.classList.toggle('is-open');
+            menuButton.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        globalNav.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                globalNav.classList.remove('is-open');
+                menuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>
